@@ -5,7 +5,7 @@
     <div style="width: 50%; margin: auto">
         {% for comment in comments %}
             <div style="padding: 10px;
-                        background-color: {{ loop.cicle('#EEE', '#e6f9ff') }};
+                        background-color: {{ loop.cycle('#EEE', '#e6f9ff') }};
                         margin: 20px">
                 <p>#{{ loop.index }}</p>
                 <p style="font-size: 24px">{{ comment }}</p>
