@@ -8,8 +8,12 @@
                         background-color: {{ loop.cycle('#EEE', '#e6f9ff') }};
                         margin: 20px">
                 <p>#{{ loop.index }}</p>
-                <p style="font-size: 24px">{{ comment }}</p>
+                <p style="font-size: 24px">{{ comment | upper }}</p>
             </div>
         {% endfor %}
+    </div>
+    <hr>
+    <div>
+        <p>{{ comments | join(" | ") }}</p>
     </div>
 {% endblock %}
