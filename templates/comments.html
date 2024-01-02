@@ -14,6 +14,7 @@
     </div>
     <hr>
     <div>
-        <p>{{ comments | join(" | ") }}</p>
+        {{ "<h1>COMMENTS</h1>" | safe }}
+        <p>{{ comments | join(" <hr> ") | safe }}</p>
     </div>
 {% endblock %}
