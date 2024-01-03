@@ -3,4 +3,39 @@
 {% block content %}
     <h1>{% block title %} Natural lenguages processing {% endblock %}</h1>
     <h3>Begin with a simple chatbot.</h3>
+
+    <div id="chat-container">
+        <h1>Ask Me!</h1>
+        <div id="chat"></div>
+        <input type="text" id="user-input" placeholder="Type your question..." onkeydown="if (event.key === 'Enter') askQuestion()">
+        <button onclick="askQuestion()">Ask</button>
+    </div>
+
+    <script>
+        function askQuestion() {
+            var userQuestion = document.getElementById("user-input").value;
+            document.getElementById("chat").innerHTML +=
+                "<div class='message-container'>" +
+                "<div class='user-message'><img class='user-icon' src='/static/user.png' alt='User Icon'><p>" + userQuestion + "</p></div>" +
+                "</div>";
+    
+            // Simulate a response from the Flask server (always responding with "Hello")
+            var answer = "Hello";
+    
+            // Append the bot's answer to the chat container
+            document.getElementById("chat").innerHTML +=
+                "<div class='message-container'>" +
+                "<div class='bot-message'><img class='bot-icon' src='/static/bot.png' alt='Bot Icon'><p>" + answer + "</p></div>" +
+                "</div>";
+    
+            // Clear input after asking
+            document.getElementById("user-input").value = "";
+
+            // Scroll down to show the latest message
+            var chatContainer = document.getElementById("chat");
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    </script>
+    
 {% endblock %}
+

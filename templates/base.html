@@ -4,11 +4,38 @@
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %}- FlaskApp</title>
     <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px 0; /* Add padding to the navigation bar */
+        }
+
         nav a {
             color: #d64161;
             font-size: 1.5em;
             margin-left: 5px;
             text-decoration: none;
+            padding: 10px 20px; /* Add padding around the links */
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        nav a.clicked {
+            background-color: #4caf50; /* Add background color to the clicked link */
+            color: #fff; /* Text color */
+        }
+
+        .content {
+            background-color: #f7f4f4; /* Background color for the content section */
+            padding: 20px; /* Add padding to the content section */
         }
 
         .book {
@@ -22,20 +49,76 @@
                 font-size: 20px;
         }
 
+        /* STYLES FOR CHATBOT */
+
+        #chat {
+            margin-bottom: 20px;
+            max-height: 300px; /* Set a max height for the chat container */
+            overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+        }
+
+        #chat-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .user-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #4caf50;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .bot-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #2196f3;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
     </style>
 </head>
 <body>
     <nav>
-        <a href="{{ url_for('index') }}">FlaskApp</a>
-        <a href="{{ url_for('about') }}">About</a>
-        <a href="{{ url_for('computer_vision') }}">Computer vision</a>
-        <a href="{{ url_for('nlp') }}">NLP</a>
-        <a href="{{ url_for('ML_supervised') }}">ML supervised</a>
-        <a href="{{ url_for('ML_unsupervised') }}">ML unsupervised</a>
+        <a href="{{ url_for('index') }}" onclick="highlightLink(this)">FlaskApp</a>
+        <a href="{{ url_for('about') }}" onclick="highlightLink(this)">About</a>
+        <a href="{{ url_for('computer_vision') }}" onclick="highlightLink(this)">Computer vision</a>
+        <a href="{{ url_for('nlp') }}" onclick="highlightLink(this)">NLP</a>
+        <a href="{{ url_for('ML_supervised') }}" onclick="highlightLink(this)">ML supervised</a>
+        <a href="{{ url_for('ML_unsupervised') }}" onclick="highlightLink(this)">ML unsupervised</a>
     </nav>
     <hr>
     <div class="content">
         {% block content %} {% endblock %}
     </div>
+
+    <script>
+        // Check if a link was previously clicked and highlight it
+        var selectedLink = localStorage.getItem('selectedLink');
+        if (selectedLink) {
+            document.querySelector('nav a[href="' + selectedLink + '"]').classList.add('clicked');
+        }
+
+        function highlightLink(element) {
+            // Remove the 'clicked' class from all links
+            var links = document.querySelectorAll('nav a');
+            links.forEach(link => link.classList.remove('clicked'));
+
+            // Add the 'clicked' class to the clicked link
+            element.classList.add('clicked');
+
+            // Store the clicked link in local storage
+            localStorage.setItem('selectedLink', element.getAttribute('href'));
+        }
+    </script>
+
 </body>
 </html>
