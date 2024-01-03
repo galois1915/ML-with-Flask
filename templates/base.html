@@ -6,8 +6,8 @@
     <style>
         nav a {
             color: #d64161;
-            font-size: 3em;
-            margin-left: 50px;
+            font-size: 1.5em;
+            margin-left: 5px;
             text-decoration: none;
         }
 
@@ -27,8 +27,11 @@
 <body>
     <nav>
         <a href="{{ url_for('index') }}">FlaskApp</a>
-        <a href="{{ url_for('create') }}">Create</a>
         <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('computer_vision') }}">Computer vision</a>
+        <a href="{{ url_for('nlp') }}">NLP</a>
+        <a href="{{ url_for('ML_supervised') }}">ML supervised</a>
+        <a href="{{ url_for('ML_unsupervised') }}">ML unsupervised</a>
     </nav>
     <hr>
     <div class="content">

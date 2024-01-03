@@ -54,3 +54,20 @@ def create():
         return redirect(url_for('index'))
 
     return render_template('create.html')
+####################################
+
+@app.route('/computer_vision/')
+def computer_vision():
+    return render_template('computer_vision.html')
+
+@app.route('/nlp/')
+def nlp():
+    return render_template('nlp.html')
+
+@app.route('/ML_supervised/')
+def ML_supervised():
+    return render_template('ML_supervised.html')
+
+@app.route('/ML_unsupervised/')
+def ML_unsupervised():
+    return render_template('ML_unsupervised.html')
