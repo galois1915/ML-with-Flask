@@ -9,3 +9,6 @@ Execution:
 * <code>export FLASK_APP=app</code>
 * <code>FLASK_ENV=development</code>
 * <code>flask run</code>
+
+Datasets:
+* [Fruits fresh and rotten](https://www.kaggle.com/datasets/sriramr/fruits-fresh-and-rotten-for-classification)
