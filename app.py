@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 import datetime
 import os
 import psycopg2
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -55,9 +56,16 @@ def create():
 
     return render_template('create.html')
 ####################################
-
-@app.route('/computer_vision/')
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+@app.route('/computer_vision/',methods=["GET", "POST"])
 def computer_vision():
+    if request.method == 'POST':
+        file = request.files['img']
+        file_name = secure_filename(file.filename)
+        file.save(os.path.join("./static/uploads", file_name))
+        #img_path = os.path.join("./static/uploads", filename)
+        print(file_name)
+        return render_template('computer_vision.html', img_name=file_name)
     return render_template('computer_vision.html')
 
 @app.route('/nlp/')
